@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Visual">
+      <UniqueIdentifier>{c495acaa-ceab-4d5e-b42a-92508b530e8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{7f33d5c1-56d2-4f54-b510-39693a6c862d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visual\Actor">
+      <UniqueIdentifier>{415708b5-f40a-43b5-b641-a626d0178801}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{f929bf64-f4ab-48ea-b9b9-0f7e04071ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Level">
+      <UniqueIdentifier>{8482d890-72d1-44e3-ab7c-b28752078911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tiles">
+      <UniqueIdentifier>{2a3c046d-593b-48b8-8c61-6eeb2b11c7d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{99d32843-6d63-496f-9f02-d961ff7126de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Array2D">
+      <UniqueIdentifier>{e21896f6-55b1-464d-95d9-0e4c71fd631f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{22891bc4-5ff9-4d97-98f3-e967d4fbac02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{d80f75ab-b949-41bf-a9b3-9496f4172fc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Viewport">
+      <UniqueIdentifier>{db049135-9157-446c-9af2-7cf1494d6e56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Message">
+      <UniqueIdentifier>{84f87eab-58cd-4d0d-928e-2a46160fb0c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{86c81696-a812-4536-889f-975d9db0996d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PostProcess">
+      <UniqueIdentifier>{aea4adc5-bce9-453a-bf08-8bd480336d08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{7bd0b602-6cc3-44aa-91de-7a8fa36a716d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RenderTarget">
+      <UniqueIdentifier>{28589d4b-fe11-4a85-88e0-d9fb3ab7c6f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\fx">
+      <UniqueIdentifier>{ba62e1c6-0b33-492e-96a6-e88c69cb3180}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\visual\Visual.cpp">
+      <Filter>Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Visual\Actor\Actor.cpp">
+      <Filter>Visual\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Precomp.cpp" />
+    <ClCompile Include="src\Level\Level.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tiles\Tiles.cpp">
+      <Filter>Tiles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object\Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\Core.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Physics\AABB.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sound\SoundBank.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Viewport\Viewport.cpp">
+      <Filter>Viewport</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Message\MessageList.cpp">
+      <Filter>Message</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shader\Shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PostProcess\PostProcess.cpp">
+      <Filter>PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Controller\Controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RenderTarget\RenderTarget.cpp">
+      <Filter>RenderTarget</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\visual\Visual.h">
+      <Filter>Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Visual\Actor\Actor.h">
+      <Filter>Visual\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Precomp.h" />
+    <ClInclude Include="src\Level\Level.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tiles\Tiles.h">
+      <Filter>Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object\Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Array2D\Array2D.h">
+      <Filter>Array2D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tiles\TileInfo.h">
+      <Filter>Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Physics\AABB.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sound\SoundBank.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Viewport\Viewport.h">
+      <Filter>Viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Message\MessageList.h">
+      <Filter>Message</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Shader\Shader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PostProcess\PostProcess.h">
+      <Filter>PostProcess</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Controller\Controller.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RenderTarget\RenderTarget.h">
+      <Filter>RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="data\shader\fx.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\shader\postprocess_ps.fx">
+      <Filter>PostProcess</Filter>
+    </None>
+    <None Include="data\shader\postprocess_vs.fx">
+      <Filter>PostProcess</Filter>
+    </None>
+    <None Include="src\Controller\Controller.inl">
+      <Filter>Controller</Filter>
+    </None>
+    <None Include="src\Viewport\Viewport.inl">
+      <Filter>Viewport</Filter>
+    </None>
+    <None Include="src\Level\Level.inl">
+      <Filter>Level</Filter>
+    </None>
+    <None Include="src\Tiles\Tiles.inl">
+      <Filter>Tiles</Filter>
+    </None>
+    <None Include="src\Visual\Actor\Actor.inl">
+      <Filter>Visual\Actor</Filter>
+    </None>
+    <None Include="data\shader\error_ps.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\error_vs.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\shadow_ps.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\shadow_vs.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\visual_ps.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\visual_vs.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\decal_ps.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\decal_vs.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\tile_ps.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\tile_vs.fx">
+      <Filter>Shader\fx</Filter>
+    </None>
+    <None Include="data\shader\hlsl2glsl.h">
+      <Filter>Shader</Filter>
+    </None>
+  </ItemGroup>
+</Project>

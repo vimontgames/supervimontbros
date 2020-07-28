@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\SuperVimontBros\SuperVimontBros.cpp">
+      <Filter>SuperVimontBros</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Precomp.cpp" />
+    <ClCompile Include="src\Entity\Ball\Ball.cpp">
+      <Filter>Entity\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Bonus\Bonus.cpp">
+      <Filter>Entity\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Dog\Dog.cpp">
+      <Filter>Entity\Dog</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Enemy\Enemy.cpp">
+      <Filter>Entity\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Goal\Goal.cpp">
+      <Filter>Entity\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Vehicle\Vehicle.cpp">
+      <Filter>Entity\Vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Vehicle\Peugeot3008\Peugeot3008.cpp">
+      <Filter>Entity\Vehicle\Peugeot3008</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Shit\Shit.cpp">
+      <Filter>Entity\Shit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Player\Player.cpp">
+      <Filter>Entity\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Entity.cpp">
+      <Filter>Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Vehicle\Clio\Clio.cpp">
+      <Filter>Entity\Vehicle\Clio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Flag\Flag.cpp">
+      <Filter>Entity\Flag</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Goal\Football\FootballGoal.cpp">
+      <Filter>Entity\Goal\Football</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Goal\Rugby\RugbyGoal.cpp">
+      <Filter>Entity\Goal\Rugby</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Breakable\Breakable.cpp">
+      <Filter>Entity\Breakable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Splash\Splash.cpp">
+      <Filter>Entity\Splash</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\ElectricBox\ElectricBox.cpp">
+      <Filter>Entity\ElectricBox</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="SuperVimontBros">
+      <UniqueIdentifier>{a8ff0b76-077f-43fe-b67e-ea95e7024043}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity">
+      <UniqueIdentifier>{06054983-0dbf-433b-867a-da9f632db127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Ball">
+      <UniqueIdentifier>{ab567a77-c505-454b-8e58-f68579d4e55c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Bonus">
+      <UniqueIdentifier>{07ec8c13-42c9-4664-a33b-e9a5756fe3ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Dog">
+      <UniqueIdentifier>{16c462eb-2125-4d1c-a5a1-2dd286d02762}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Enemy">
+      <UniqueIdentifier>{39f5874f-068a-4fb8-917a-6ed49dd61701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Goal">
+      <UniqueIdentifier>{7356e730-0de0-4e9a-9bda-79a58477cfba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Player">
+      <UniqueIdentifier>{6703b578-72b4-4bea-a0d5-ca82c8f57880}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Shit">
+      <UniqueIdentifier>{a412d555-a009-4e88-8fbd-9b0879ffaa4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Vehicle">
+      <UniqueIdentifier>{6be328a4-3c7a-42f1-8460-2ae4873daacc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Vehicle\Peugeot3008">
+      <UniqueIdentifier>{f9f3f4b4-94f0-442a-8b6f-a3664e6a3035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Vehicle\Clio">
+      <UniqueIdentifier>{31b80a34-9c8c-490f-8ff6-87efd139c41d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Flag">
+      <UniqueIdentifier>{36bcd365-da5e-48cb-9836-835b09e5a001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tiles">
+      <UniqueIdentifier>{90a56e86-427a-4b3b-849f-0503b5fb29f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Goal\Football">
+      <UniqueIdentifier>{432b6106-9171-4776-8ce5-3a8839dac446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Goal\Rugby">
+      <UniqueIdentifier>{fb824788-20c5-400b-b6ef-08888f5739a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Breakable">
+      <UniqueIdentifier>{a943f8c7-991b-4c79-bbf7-37c8c62abda9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Splash">
+      <UniqueIdentifier>{1dfc7d64-c2b8-44ca-ac2d-96c9b35fcc2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\ElectricBox">
+      <UniqueIdentifier>{b1876bcd-9b0b-47b9-89fc-795f2f5b891b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SuperVimontBros\SuperVimontBros.h">
+      <Filter>SuperVimontBros</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Precomp.h" />
+    <ClInclude Include="src\Entity\Ball\Ball.h">
+      <Filter>Entity\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Bonus\Bonus.h">
+      <Filter>Entity\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Dog\Dog.h">
+      <Filter>Entity\Dog</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Enemy\Enemy.h">
+      <Filter>Entity\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Goal\Goal.h">
+      <Filter>Entity\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Vehicle\Vehicle.h">
+      <Filter>Entity\Vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Vehicle\Peugeot3008\Peugeot3008.h">
+      <Filter>Entity\Vehicle\Peugeot3008</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Shit\Shit.h">
+      <Filter>Entity\Shit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Player\Player.h">
+      <Filter>Entity\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Entity.h">
+      <Filter>Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Vehicle\Clio\Clio.h">
+      <Filter>Entity\Vehicle\Clio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Flag\Flag.h">
+      <Filter>Entity\Flag</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tiles\LevelObject.h">
+      <Filter>Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tiles\LevelTile.h">
+      <Filter>Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tiles\SpriteModel.h">
+      <Filter>Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Goal\Football\FootballGoal.h">
+      <Filter>Entity\Goal\Football</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Goal\Rugby\RugbyGoal.h">
+      <Filter>Entity\Goal\Rugby</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tiles\LevelDecal.h">
+      <Filter>Tiles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Breakable\Breakable.h">
+      <Filter>Entity\Breakable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Splash\Splash.h">
+      <Filter>Entity\Splash</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\ElectricBox\ElectricBox.h">
+      <Filter>Entity\ElectricBox</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Entity\Player\Player.inl">
+      <Filter>Entity\Player</Filter>
+    </None>
+    <None Include="src\Entity\Shit\Shit.inl">
+      <Filter>Entity\Shit</Filter>
+    </None>
+    <None Include="src\Entity\Entity.inl">
+      <Filter>Entity</Filter>
+    </None>
+    <None Include="src\Entity\Ball\Ball.inl">
+      <Filter>Entity\Ball</Filter>
+    </None>
+  </ItemGroup>
+</Project>
