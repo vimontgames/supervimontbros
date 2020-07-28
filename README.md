@@ -30,6 +30,16 @@ There are many ways to kill these zombies, including vicious traps ^^
 ![Trap](img/itsatrap.png?raw=true "Trap")
 
 
+# how to play
+
+Binaries are included for the Win32 version only. Run SuperVimontBros_x64_Final.exe. 
+It should be easy to port the game onto other platforms than Win32 but my kids were not that interested in having a Linux version so ...
+
+
+# how to build
+
+All you need is Visual Studio (I personally use the free VS2017 Community edition. And a $(SMFL) environment var pointing to your SMFL path (ie. mine is "$(SFML)=G:\SFML\SFML-2.5.1").
+
 # external stuff used
 
 SFML distributed under the zlib/png license
