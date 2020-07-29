@@ -38,7 +38,7 @@ It should be easy to port the game onto other platforms than Win32 but my kids w
 
 # how to build
 
-All you need is Visual Studio (I personally use the free VS2017 Community edition. And a $(SMFL) environment var pointing to your SMFL path (ie. mine is "$(SFML)=G:\SFML\SFML-2.5.1").
+All you need is Visual Studio (I personally use the free VS2017 Community edition and ab $(SMFL) environment var pointing to your SMFL path (ie. "$(SFML)=G:\SFML\SFML-2.5.1").
 
 # external stuff used
 
