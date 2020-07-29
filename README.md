@@ -40,7 +40,7 @@ It should be easy to port the game onto other platforms than Win32 but my kids w
 
 A/X: Run/turbo
 
-B/O: Shoot into stuff (could be a ball, poo or zombie head)
+B/O: Kick stuff (could be a ball, poo or zombie head)
 
 X/▢ : Drop a poo (keep button pressed longer for a big one)
 
