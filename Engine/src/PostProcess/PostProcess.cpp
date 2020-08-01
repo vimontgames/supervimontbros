@@ -86,7 +86,7 @@ bool PostProcess::initShaders()
 bool PostProcess::initTextures()
 {
 	bool result = true;
-	result |= m_lut.loadFromFile("SuperVimontBros/data/img/lut/default.psd" /*"Engine/data/img/lut/default.psd"*/);
+	result |= m_lut.loadFromFile("SuperVimontBros/data/img/lut/default.psd");
 	m_lut.setSmooth(true);
 	return result;
 }

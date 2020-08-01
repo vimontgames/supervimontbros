@@ -562,6 +562,23 @@ void SuperVimontBros::drawTitle(RenderTexture & _dst)
 		Y += title_fontSize * 2;
 	}
 
+	// Version
+	{
+		const char * version = "1.0";
+		const uint len = strlen(version);
+		const uint offset = (len & 1) ? title_fontSize * len * 0.5f : title_fontSize * (len - 0.5f) * 0.5f;
+
+		Vector2f pos = title.getPosition() + Vector2f{ title.getLocalBounds().width, 0*title.getLocalBounds().height };
+
+		pos.x = (float)(int(pos.x) - int(pos.x) % (int)title_fontSize);
+		pos.y = (float)(int(pos.y) - int(pos.y) % (int)title_fontSize);
+
+		text.setPosition(pos);
+		text.setString(version);
+		text.setFillColor(title_disabledColor);
+		_dst.draw(text);
+	}
+
 	// VimontGames
 	{
 		const char * copyright = "VimontGames 2019-2020";
@@ -970,6 +987,10 @@ void SuperVimontBros::populateCell(SpawnList & _spawns, const CellInfo & _cell, 
 		// Dog NPCs
 		case LevelObject::DogJune:
 			_spawns.push_back({ new Dog(DogType::June) });
+			break;
+
+		case LevelObject::Praline:
+			_spawns.push_back({ new Dog(DogType::Praline) });
 			break;
 
 		case LevelObject::DogLucky:

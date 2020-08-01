@@ -17,7 +17,7 @@ class Player;
 
 struct AnimFrame
 {
-	AnimFrame(const sf::Vector2u & _imageCoords, uint _durationInMs = 1000) :
+	explicit AnimFrame(const sf::Vector2u & _imageCoords, uint _durationInMs = 1000) :
 		m_imageCoords(_imageCoords),
 		m_duration(_durationInMs)
 	{

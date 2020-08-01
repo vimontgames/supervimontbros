@@ -7,8 +7,8 @@ void main()
 	float4 pixel = texture2D(texture, uv);
 
 	int palette = int(gl_Color.a * 255.5);
-	pixel.rgb = sampleAs3DTexture(lut, pixel.rgb, 16, palette, 8);
+	pixel.rgb = sampleAs3DTexture(lut, pixel.rgb, 16, palette, 16).rgb;
 
 	gl_FragColor.rgb = pixel.rgb;
-	gl_FragColor.a = 1.0f;
+	gl_FragColor.a = 1.0;
 }

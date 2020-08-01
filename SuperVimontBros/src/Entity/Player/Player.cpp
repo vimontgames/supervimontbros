@@ -31,14 +31,15 @@ const PlayerTypeInfo & PlayerTypeInfo::get(PlayerType _playerType)
 {
 	static PlayerTypeInfo playerTypeInfo[] =
 	{
-		PlayerTypeInfo("ROMEO",	 SPRITE_LINE(SpriteModel::Romeo),	 Color(255,255,230),   AnimLeft      | CanCarry | ShitFootBall,				2, 1, 3, 4),
-		PlayerTypeInfo("PABLO",	 SPRITE_LINE(SpriteModel::Pablo),	 Color(250, 250, 250), StrongStomach | CanCarry | ShitRugby,				1, 3, 2, 4),
-		PlayerTypeInfo("BENUALDO",SPRITE_LINE(SpriteModel::Benualdo),Color(128,96,64),	   AnimLeft      | CanCarry | CanDrinkWine,				1, 0, 3, 2),
-		PlayerTypeInfo("MARIE",	 SPRITE_LINE(SpriteModel::Marie),	 defaultShitColor,     AtomicFart    | CanCarry | CanDrinkWine,				0, 3, 4, 1),
-		PlayerTypeInfo("YVAN",	 SPRITE_LINE(SpriteModel::Yvan),	 defaultShitColor,     StrongStomach | CanCarry | CanDrinkWine | ShitRugby, 0, 3, 1, 5),
-		PlayerTypeInfo("JUNE",	 SPRITE_LINE(SpriteModel::June),	 defaultShitColor,     IsADog),
-		PlayerTypeInfo("LUCKY",	 SPRITE_LINE(SpriteModel::Lucky),	 defaultShitColor,     IsADog),
-		PlayerTypeInfo("PRALINE",SPRITE_LINE(SpriteModel::Praline),	 Color(230,255,230),   IsADog | AtomicFart),
+		PlayerTypeInfo("ROMEO",	   SPRITE_LINE(SpriteModel::Romeo),	   Color(255,255,230),   AnimLeft      | CanCarry | ShitFootBall,				2, 1, 3, 4),
+		PlayerTypeInfo("PABLO",	   SPRITE_LINE(SpriteModel::Pablo),	   Color(250, 250, 250), StrongStomach | CanCarry | ShitRugby,				    1, 3, 2, 4),
+		PlayerTypeInfo("BENUALDO", SPRITE_LINE(SpriteModel::Benualdo), Color(128,96,64),     AnimLeft      | CanCarry | CanDrinkWine,				1, 0, 3, 2),
+		PlayerTypeInfo("MARIE",	   SPRITE_LINE(SpriteModel::Marie),	   defaultShitColor,     AtomicFart    | CanCarry | CanDrinkWine,				0, 3, 4, 1),
+		PlayerTypeInfo("YVAN",	   SPRITE_LINE(SpriteModel::Yvan),	   defaultShitColor,     StrongStomach | CanCarry | CanDrinkWine | ShitRugby,   0, 3, 1, 5),
+		PlayerTypeInfo("JUNE",	   SPRITE_LINE(SpriteModel::June),	   defaultShitColor,     IsADog),
+		PlayerTypeInfo("LUCKY",	   SPRITE_LINE(SpriteModel::Lucky),	   defaultShitColor,     IsADog),
+		PlayerTypeInfo("PRALINE",  SPRITE_LINE(SpriteModel::Praline),  Color(230,255,230),   IsADog | AtomicFart),
+        PlayerTypeInfo("BENJAMIN", SPRITE_LINE(SpriteModel::Benjamin), Color(255,255,255),   CanCarry | CanDrinkWine | ShitElectric,				8, 4, 0, 6),
 	};
 	static_assert(COUNT_OF(playerTypeInfo) == (uint)PlayerType::Count);
 
@@ -332,6 +333,7 @@ void Player::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizo
 	Shit * shit = dynamic_cast<Shit*>(_other);
 	if (shit)
 	{
+		onHitShit(shit);
 		return;
 	}
 
@@ -499,6 +501,16 @@ void Player::onEnterVehicle(Vehicle * _vehicle)
 		m_visible = false;
 		m_vehicle = _vehicle;
 		setParent(m_vehicle);
+	}
+}
+
+//--------------------------------------------------------------------------
+void Player::onHitShit(Shit * _shit)
+{
+	if (_shit->getShitType() == ShitType::Electric && _shit->getParent() != this)
+	{
+		onElectricityHit(_shit);
+		_shit->playSound(SoundFX::Damage, 50);
 	}
 }
 
@@ -695,13 +707,11 @@ void Player::update(const float _dt)
 						ShitType shitType = ShitType::Default;
 
 						if (bigOne && (playerInfo.flags & PlayerTypeInfo::Flags::ShitFootBall))
-						{
 							shitType = ShitType::Ball;
-						}
-						else if(bigOne && (playerInfo.flags & PlayerTypeInfo::Flags::ShitRugby))
-						{
+						else if (bigOne && (playerInfo.flags & PlayerTypeInfo::Flags::ShitRugby))
 							shitType = ShitType::Rugby;
-						}
+						else if (bigOne && (playerInfo.flags & PlayerTypeInfo::Flags::ShitElectric))
+							shitType = ShitType::Electric;
 
 						Shit * shit = new Shit(shitType);
 

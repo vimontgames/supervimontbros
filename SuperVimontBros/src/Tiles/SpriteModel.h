@@ -20,6 +20,7 @@ enum class SpriteModel : spriteIndex
 	Lucky			= SPRITE_INDEX(0, 9),
 	Praline			= SPRITE_INDEX(0, 20),
 	Yvan			= SPRITE_INDEX(0, 21),
+    Benjamin        = SPRITE_INDEX(0, 23),
 
 	ZombiePlaya		= SPRITE_INDEX(0, 3),
 	Zombie			= SPRITE_INDEX(0, 4),

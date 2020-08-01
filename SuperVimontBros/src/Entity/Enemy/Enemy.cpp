@@ -222,14 +222,13 @@ void Enemy::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizon
 //--------------------------------------------------------------------------
 bool Enemy::onHitShit(Shit * _shit)
 {
-	// Shits are *ALWAYS* killing enemies
-	//if (!asBool(EnemyTypeInfo::get(m_enemyType).flags & EnemyTypeInfo::Flags::GoalKeeper)) //_shit->isMoving())
-	{
-		kill(dynamic_cast<Player*>(_shit->getParent()));
-		return true;
-	}
+	KillCause cause = KillCause::Default;
 
-	return false;
+	if (ShitType::Electric == _shit->getShitType())
+		cause = KillCause::Electricity;
+
+	kill(dynamic_cast<Player*>(_shit->getParent()), cause);
+	return true;
 }
 
 //--------------------------------------------------------------------------

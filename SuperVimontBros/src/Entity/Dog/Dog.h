@@ -5,7 +5,8 @@
 enum class DogType : u8
 {
 	June = 0,
-	Lucky = 1,
+	Lucky,
+	Praline,
 
 	Count
 };

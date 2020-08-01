@@ -10,17 +10,17 @@ uniform bool final;
 
 void main()
 {
-	float4 pixel = 0;
+	float4 pixel = float4(0,0,0,0);
 
 	float2 uv = gl_TexCoord[0].xy;
 
-	if (pixelize > 0.0f)
+	if (pixelize > 0.0)
 	{
-		float scale = lerp(1, 16.0f, pixelize);
+		float scale = lerp(1, 16.0, pixelize);
 		uv = round(uv * screenSize / scale) / (screenSize / scale);
 	}
 	
-	if (blur > 0.0f)
+	if (blur > 0.0)
 	{
 		pixel = texture_blur(texture, uv, screenSize.xy, 5, blur);
 	}
@@ -36,7 +36,7 @@ void main()
 	if (final)
 	{
 		gl_FragColor.rgb = pixel.rgb;
-		gl_FragColor.a = 1.0f;
+		gl_FragColor.a = 1.0;
 	}
 	else
 	{
@@ -46,9 +46,9 @@ void main()
 		else
 			gl_FragColor.rgb = pixel.rgb;
 		#else
-		gl_FragColor.rgb = lerp(pixel.rgb*0.75f, pixel.rgb, pixel.a);
+		gl_FragColor.rgb = lerp(pixel.rgb*0.75, pixel.rgb, pixel.a);
 		#endif
 
-		gl_FragColor.a = 1.0f;
+		gl_FragColor.a = 1.0;
 	}
 }

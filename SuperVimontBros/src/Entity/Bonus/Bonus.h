@@ -46,6 +46,7 @@ public:
 	bool isRotten() const;
 	bool isRottenForPlayer(PlayerType _playerType) const;
 	bool isWine() const;
+	bool isChocolate() const;
 
 	BonusType	m_bonusType;
 	bool		m_isRotten = false;

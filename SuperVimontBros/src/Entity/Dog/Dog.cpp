@@ -3,6 +3,7 @@
 #include "SuperVimontBros/SuperVimontBros.h"
 #include "Entity/Shit/Shit.h"
 #include "Entity/Player/Player.h"
+#include "Tiles/SpriteModel.h"
 
 using namespace sf;
 
@@ -19,6 +20,9 @@ PlayerType dogTypeToPlayerType(DogType _dogType)
 
 		case DogType::June:
 			return PlayerType::June;
+
+		case DogType::Praline:
+			return PlayerType::Praline;
 	}
 }
 
@@ -48,10 +52,37 @@ void Dog::init()
 {
 	Super::init();
 
-	uint line = DogType::June == m_dogType ? 8 : 9;
+	uint line;
+
+	switch (m_dogType)
+	{
+		default:
+		assert(false);
+
+		case DogType::Lucky:
+			line = SPRITE_LINE(SpriteModel::Lucky);
+			m_wakeUpTime = 2.5f;
+			m_speed = 0.04f;
+			m_shitTime = 15.0f;
+			break;
+
+		case DogType::June:
+			line = SPRITE_LINE(SpriteModel::June);
+			m_wakeUpTime = 2.0f;
+			m_speed = 0.035f;
+			m_shitTime = 10.0f;
+			break;
+
+		case DogType::Praline:
+			line = SPRITE_LINE(SpriteModel::Praline);
+			m_wakeUpTime = 3.0f;
+			m_speed = 0.05f;
+			m_shitTime = 5.0f;
+			break;
+	}
 
 	AnimationSequence & idle = getAnimationSequence(Animation::Idle);
-					    idle.addFrame(AnimFrame({ 11, line }, 1000));
+						idle.addFrame(AnimFrame({ 11, line }, 1000));
 
 	AnimationSequence & shit = getAnimationSequence(Animation::Shit);
 						shit.addFrame(AnimFrame({ 13,line }, 1000));
@@ -67,21 +98,6 @@ void Dog::init()
 
 	addCustomSoundFX(SoundFX::CelebrateGoal, "SuperVimontBros/data/sound", "Woof.wav");
 	addCustomSoundFX(SoundFX::Prout, "SuperVimontBros/data/sound", "prout.wav");
-
-	switch (m_dogType)
-	{
-		case DogType::Lucky:
-			m_wakeUpTime = 3.0f;
-			m_speed = 0.04f;
-			m_shitTime = 15.0f;
-			break;
-
-		case DogType::June:
-			m_wakeUpTime = 2.0f;
-			m_speed = 0.035f;
-			m_shitTime = 5.0f;
-			break;
-	}
 }
 
 //--------------------------------------------------------------------------
@@ -97,6 +113,14 @@ void Dog::update(const float _dt)
 		{
 			case DogType::June:
 				if (player->getPlayerType() == PlayerType::June)
+				{
+					Game::get().ReleaseAsync(this);
+					return;
+				}
+				break;
+
+			case DogType::Praline:
+				if (player->getPlayerType() == PlayerType::Praline)
 				{
 					Game::get().ReleaseAsync(this);
 					return;

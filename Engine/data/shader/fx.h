@@ -2,15 +2,15 @@
 //--------------------------------------------------------------------------
 float3 color_saturation(float3 _color, float _saturation)
 {
-	float grey = dot(_color.rgb, vec3(0.3f, 0.59f, 0.11f));
-	return lerp(grey, _color.rgb, _saturation);
+	float grey = dot(_color.rgb, vec3(0.3, 0.59, 0.11));
+	return lerp(grey, _color.rgb, _saturation).rgb;
 }
 
 //--------------------------------------------------------------------------
 float4 texture_blur(sampler2D _texture, float2 _uv, float2 _size, int _samples, float _scale)
 {
-	float4 pixel = 0.0f;
-	float2 invSize = float2(1.0f / _size.x, 1.0f /_size.y);
+	float4 pixel = float4(0, 0, 0, 0);
+	float2 invSize = float2(1.0 / _size.x, 1.0 /_size.y);
 
 	for (int j = 0; j < _samples; ++j)
 	{
@@ -40,7 +40,7 @@ float4 sampleAs3DTexture(sampler2D _texture, float3 _uv, float _width, int _lut,
 
 	float4 slice0Color = texture2D(_texture, float2(s0, yOffset), 0.0);
 	float4 slice1Color = texture2D(_texture, float2(s1, yOffset), 0.0);
-	float zOffset = mod(_uv.z * innerWidth, 1.0f);
+	float zOffset = mod(_uv.z * innerWidth, 1.0);
 	float4 result = lerp(slice0Color, slice1Color, zOffset);
 	return result;
 }

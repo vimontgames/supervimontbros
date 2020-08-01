@@ -149,16 +149,26 @@ bool Bonus::isWine() const
 }
 
 //--------------------------------------------------------------------------
-bool Bonus::isRottenForPlayer(PlayerType _playerType) const
+bool Bonus::isChocolate() const
 {
-	if (m_isRotten || (isWine() && !(PlayerTypeInfo::get(_playerType).flags & PlayerTypeInfo::Flags::CanDrinkWine)))
+	switch (m_bonusType)
 	{
+	case BonusType::Crunch:
+	case BonusType::ChocolateEclair:
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+
+	return false;
+}
+
+//--------------------------------------------------------------------------
+bool Bonus::isRottenForPlayer(PlayerType _playerType) const
+{
+	if (isWine() && !(PlayerTypeInfo::get(_playerType).flags & PlayerTypeInfo::Flags::CanDrinkWine))
+		return true;
+	else if (isChocolate() && !(PlayerTypeInfo::get(_playerType).flags & PlayerTypeInfo::Flags::IsADog))
+		return true;
+	return m_isRotten;
 }
 
 //--------------------------------------------------------------------------

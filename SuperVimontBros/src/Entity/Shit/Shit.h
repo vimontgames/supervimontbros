@@ -9,6 +9,7 @@ enum class ShitType
 	Default = 0,
 	Ball,
 	Rugby,
+	Electric,
 	ZombieHead,
 	ZombieHeadSkeleton,
 

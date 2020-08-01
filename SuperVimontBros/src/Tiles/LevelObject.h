@@ -57,6 +57,9 @@ enum class LevelObject : objectIndex
 	TennisBall			= OBJECT_INDEX(5, 4),
 	ZombieHead			= OBJECT_INDEX(6, 4),
 	ZombieHeadSkeleton	= OBJECT_INDEX(7, 4),
+	ShitElectric		= OBJECT_INDEX(11, 4),
+	ShitElectric1		= OBJECT_INDEX(12, 4),
+	Praline				= OBJECT_INDEX(13, 4),
 
 	Zombie				= OBJECT_INDEX(0, 5),
 	Footballer			= OBJECT_INDEX(1, 5),

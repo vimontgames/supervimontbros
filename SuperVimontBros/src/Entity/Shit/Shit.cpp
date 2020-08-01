@@ -40,6 +40,12 @@ Shit::Shit(ShitType _shitType) :
 			m_lifeTime = 20000;
 			break;
 
+		case ShitType::Electric:
+			m_lifeTime = 20000;
+			m_kickSpeed = 0.3f;
+			m_bounce = 0.6f;
+			break;
+
 		case ShitType::ZombieHeadSkeleton:
 		case ShitType::ZombieHead:
 			m_kickSpeed = 0.25f;
@@ -61,36 +67,38 @@ void Shit::init()
 {
 	Entity::init();
 
-	Vector2u shitImg;
-
+	AnimationSequence & idle = getAnimationSequence(Animation::Idle);
+	
 	switch (m_shitType)
 	{
 		default:
-			assert(false);
+			assert(false);  
 
 		case ShitType::Default:
-			shitImg = m_tileSet->indexToCoords((uint)LevelObject::Shit);
-			break;
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::Shit)) );
+			break; 
 
 		case ShitType::Ball:
-			shitImg = m_tileSet->indexToCoords((uint)LevelObject::ShitFootball);
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::ShitFootball)));
+			break;
+
+		case ShitType::Electric:
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::ShitElectric), 1000));
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::ShitElectric1), 100));
 			break;
 
 		case ShitType::Rugby:
-			shitImg = m_tileSet->indexToCoords((uint)LevelObject::ShitRugby);
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::ShitRugby)));
 			break;
 
 		case ShitType::ZombieHead:
-			shitImg = m_tileSet->indexToCoords((uint)LevelObject::ZombieHead);
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::ZombieHead)));
 			break;
 
 		case ShitType::ZombieHeadSkeleton:
-			shitImg = m_tileSet->indexToCoords((uint)LevelObject::ZombieHeadSkeleton);
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::ZombieHeadSkeleton)));
 			break;
 	}
-
-	AnimationSequence & idle = getAnimationSequence(Animation::Idle);
-						idle.addFrame(AnimFrame(shitImg));
 
 	addSoundFX(SoundFX::Hit, "SuperVimontBros/data/sound/Poc.wav");
 }
@@ -115,6 +123,7 @@ void Shit::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizont
 	Player * player = dynamic_cast<Player*>(_other);
 	if (player)
 	{
+		player->onHitShit(this);
 		return;
 	}
 

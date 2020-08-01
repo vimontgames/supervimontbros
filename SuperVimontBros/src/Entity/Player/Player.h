@@ -9,17 +9,19 @@ class Vehicle;
 class Viewport;
 class Enemy;
 class Bonus;
+class Shit;
 
 enum class PlayerType : u8
 {
-	Romeo = 0,
-	Pablo,
-	Benualdo,
-	Marie,
-	Yvan,
-	June,
-	Lucky,
-	Praline,
+    Romeo = 0,
+    Pablo,
+    Benualdo,
+    Marie,
+    Yvan,
+    June,
+    Lucky,
+    Praline,
+    Benjamin,
 
 	Count
 };
@@ -40,7 +42,8 @@ struct PlayerTypeInfo
 		AtomicFart	  = 0x00000010,
 		ShitRugby	  = 0x00000020,
 		CanCarry	  = 0x00000040,
-		CanDrinkWine  = 0x00000080
+		CanDrinkWine  = 0x00000080,
+		ShitElectric  = 0x00000100,
 	};
 
 	PlayerTypeInfo(const char * _name, u8 _spriteLine, sf::Color _shitColor = defaultShitColor, Flags _flags = (Flags)0, u8 _pal0 = 0, u8 _pal1 = 0, u8 _pal2 = 0, u8 _pal3 = 0) :
@@ -105,6 +108,7 @@ public:
 	bool					onElectricityHit(Entity * _byEntity);
 	void					onEnterVehicle(Vehicle * _vehicle);
 	void					onExitVehicle();
+	void					onHitShit(Shit * _shit);
 
 	bool					setRotten(bool _isRotten);
 
