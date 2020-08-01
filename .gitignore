@@ -1,0 +1,8 @@
+*.user
+.vs/*
+Engine/x64
+SuperVimontBros/x64
+*.ilk
+*.pdb
+*.exe
+lib/*
