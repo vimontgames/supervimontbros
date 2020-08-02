@@ -9,6 +9,7 @@ class Ball;
 class Shit;
 class Vehicle;
 class Goal;
+class MenuTitle;
 
 enum class PlayerType : u8;
 
@@ -21,6 +22,12 @@ enum class GameState
 	Loose,
 
 	Count
+};
+
+class GameStateData
+{
+public:
+	std::vector<Entity*> m_entities;
 };
 
 struct RadZone
@@ -36,6 +43,9 @@ class SuperVimontBros : public Game
 {
 	public:
 		static SuperVimontBros & get();
+
+		SuperVimontBros();
+		~SuperVimontBros();
 
 		bool init(bool _reinit = false) final override;
 		void reset() final override;
@@ -87,25 +97,8 @@ class SuperVimontBros : public Game
 		std::vector<Ball*>		m_rugbyBalls;
 		sf::Vector2u			m_score[(uint)GoalType::Count];
 		
-		struct GameStateData
-		{
-			std::vector<Entity*> m_entities;
-		};
-
 		GameState				m_gameState = GameState::Title;
 		GameStateData			m_gameStateData[(u32)GameState::Count];
-
-		sf::Texture				m_title;
-
-		enum class TitleMenu
-		{
-			Play = 0,
-			//Edit,
-			//Credits,
-
-			Count
-		};
-		TitleMenu				m_titleMenu = TitleMenu::Play;
 
 		struct ControllerState
 		{
@@ -116,13 +109,7 @@ class SuperVimontBros : public Game
 		};
 		std::vector<ControllerState>	m_selectedPlayerType;
 
-		void					menuUp();
-		void					menuDown();
-		void					menuButton(unsigned int _button);
-
 		uint					getMaxControllers();
-		void					updateTitle(GameStateData & _data);
-		void					drawTitle(sf::RenderTexture & _dst);
 		uint					createPlayers();
 		void					deleteGameStateData(GameState _gameState);
 
@@ -133,4 +120,6 @@ class SuperVimontBros : public Game
 
 		std::vector<RadZone>	m_radZones;
 		sf::Music				m_backgroundMusic;
+
+		MenuTitle * 			m_menuTitle = nullptr;
 };

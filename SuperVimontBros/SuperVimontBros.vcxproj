@@ -160,6 +160,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Final|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\SuperVimontBros\Menu\Menu.cpp" />
+    <ClCompile Include="src\SuperVimontBros\Menu\MenuTitle.cpp" />
     <ClCompile Include="src\SuperVimontBros\SuperVimontBros.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +183,8 @@
     <ClInclude Include="src\Entity\Vehicle\Peugeot3008\Peugeot3008.h" />
     <ClInclude Include="src\Entity\Vehicle\Vehicle.h" />
     <ClInclude Include="src\Precomp.h" />
+    <ClInclude Include="src\SuperVimontBros\Menu\Menu.h" />
+    <ClInclude Include="src\SuperVimontBros\Menu\MenuTitle.h" />
     <ClInclude Include="src\SuperVimontBros\SuperVimontBros.h" />
     <ClInclude Include="src\Tiles\LevelDecal.h" />
     <ClInclude Include="src\Tiles\LevelObject.h" />

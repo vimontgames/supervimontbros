@@ -57,6 +57,12 @@
     <ClCompile Include="src\Entity\ElectricBox\ElectricBox.cpp">
       <Filter>Entity\ElectricBox</Filter>
     </ClCompile>
+    <ClCompile Include="src\SuperVimontBros\Menu\Menu.cpp">
+      <Filter>SuperVimontBros\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SuperVimontBros\Menu\MenuTitle.cpp">
+      <Filter>SuperVimontBros\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SuperVimontBros">
@@ -115,6 +121,9 @@
     </Filter>
     <Filter Include="Entity\ElectricBox">
       <UniqueIdentifier>{b1876bcd-9b0b-47b9-89fc-795f2f5b891b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SuperVimontBros\Menu">
+      <UniqueIdentifier>{67f58159-afcf-4f9d-abcf-466af9442ce1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +193,12 @@
     </ClInclude>
     <ClInclude Include="src\Entity\ElectricBox\ElectricBox.h">
       <Filter>Entity\ElectricBox</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperVimontBros\Menu\Menu.h">
+      <Filter>SuperVimontBros\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperVimontBros\Menu\MenuTitle.h">
+      <Filter>SuperVimontBros\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
