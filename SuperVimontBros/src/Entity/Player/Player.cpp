@@ -661,8 +661,8 @@ void Player::update(const float _dt)
 
 	if (pad.isButtonPressed((uint)Button::Run) && !isCarrying())
 	{
-		horizontalSpeed *= 1.5f;
-		verticalSpeed *= 1.5f;
+		horizontalSpeed *= 1.75f;
+		verticalSpeed *= 1.75f;
 		running = true;
 		m_celebrate = false;
 	}

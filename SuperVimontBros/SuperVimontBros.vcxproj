@@ -161,6 +161,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Final|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\SuperVimontBros\Menu\Menu.cpp" />
+    <ClCompile Include="src\SuperVimontBros\Menu\MenuCredits.cpp" />
+    <ClCompile Include="src\SuperVimontBros\Menu\MenuPlayers.cpp" />
     <ClCompile Include="src\SuperVimontBros\Menu\MenuTitle.cpp" />
     <ClCompile Include="src\SuperVimontBros\SuperVimontBros.cpp" />
   </ItemGroup>
@@ -184,7 +186,9 @@
     <ClInclude Include="src\Entity\Vehicle\Vehicle.h" />
     <ClInclude Include="src\Precomp.h" />
     <ClInclude Include="src\SuperVimontBros\Menu\Menu.h" />
+    <ClInclude Include="src\SuperVimontBros\Menu\MenuCredits.h" />
     <ClInclude Include="src\SuperVimontBros\Menu\MenuTitle.h" />
+    <ClInclude Include="src\SuperVimontBros\Menu\MenuPlayers.h" />
     <ClInclude Include="src\SuperVimontBros\SuperVimontBros.h" />
     <ClInclude Include="src\Tiles\LevelDecal.h" />
     <ClInclude Include="src\Tiles\LevelObject.h" />

@@ -65,11 +65,11 @@ bool SuperVimontBros::init(bool _reinit)
 	// Init game
 	Game::init(_reinit);
 
+	// Load title
+	m_menuTitle->init(_reinit); 
+
 	if (!_reinit)
 	{
-		// Load title
-		m_menuTitle->m_title.loadFromFile("SuperVimontBros/data/img/supervimontbros.psd");
-
 		// Load level
 		m_level.init("SuperVimontBros/data/level/000.lvl", { 196, 41 }, &m_levelTiles, &m_decalTiles, &m_objectTiles);
 
@@ -100,6 +100,7 @@ bool SuperVimontBros::init(bool _reinit)
 
 	// reset menus
 	m_gameState = GameState::Title;
+	m_menuTitle->setTitleMenu(MenuTitle::SubMenu::Main);
 
 	m_postProcess->m_blur.set(0.5f);
 	m_postProcess->m_color.set({ 0.1f, 0.1f, 0.1f });
@@ -157,7 +158,7 @@ uint SuperVimontBros::createPlayers()
 		count[c] = 0;
 	}
 
-	for (u32 c = 0; c < m_selectedPlayerType.size(); ++c)
+	for (u32 c = 0; c < COUNT_OF(m_selectedPlayerType); ++c)
 	{
 		const auto & selected = m_selectedPlayerType[c];
 
@@ -923,7 +924,7 @@ void SuperVimontBros::updateOverlay(float _dt)
 		switch (m_gameState)
 		{
 		case GameState::Title:
-			m_menuTitle->update(data);
+			m_menuTitle->update(_dt, data);
 			break;
 
 		case GameState::Win:

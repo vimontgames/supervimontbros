@@ -107,7 +107,7 @@ class SuperVimontBros : public Game
 			Entity * icon;
 			sf::Clock keyDelay;
 		};
-		std::vector<ControllerState>	m_selectedPlayerType;
+		ControllerState			m_selectedPlayerType[4];
 
 		uint					getMaxControllers();
 		uint					createPlayers();

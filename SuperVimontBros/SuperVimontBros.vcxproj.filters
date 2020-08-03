@@ -63,6 +63,12 @@
     <ClCompile Include="src\SuperVimontBros\Menu\MenuTitle.cpp">
       <Filter>SuperVimontBros\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="src\SuperVimontBros\Menu\MenuPlayers.cpp">
+      <Filter>SuperVimontBros\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SuperVimontBros\Menu\MenuCredits.cpp">
+      <Filter>SuperVimontBros\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SuperVimontBros">
@@ -198,6 +204,12 @@
       <Filter>SuperVimontBros\Menu</Filter>
     </ClInclude>
     <ClInclude Include="src\SuperVimontBros\Menu\MenuTitle.h">
+      <Filter>SuperVimontBros\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperVimontBros\Menu\MenuPlayers.h">
+      <Filter>SuperVimontBros\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperVimontBros\Menu\MenuCredits.h">
       <Filter>SuperVimontBros\Menu</Filter>
     </ClInclude>
   </ItemGroup>

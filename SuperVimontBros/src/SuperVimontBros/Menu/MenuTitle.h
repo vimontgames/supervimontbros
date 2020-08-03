@@ -2,13 +2,6 @@
 
 #include "Menu.h"
 
-namespace sf
-{
-	class RenderTexture;
-}
-
-class GameStateData;
-
 static const float title_fontSize = 8;
 static const sf::Color title_enabledColor = { 255,255,255,255 };
 static const sf::Color title_disabledColor = { 255,255,255,128 };
@@ -17,23 +10,39 @@ static const float title_joyDeadZone = 50;
 
 class MenuTitle : public Menu
 {
-	enum class TitleMenu
+public:
+	enum class SubMenu
 	{
-		Play = 0,
+		Main = 0,
+
+		Players,
 		Credits,
 
 		Count
 	};
 
-public:
-	void update(GameStateData & _data);
-	void draw(sf::RenderTexture & _dst);
+	MenuTitle();
+	~MenuTitle();
 
-	void menuUp();
-	void menuDown();
-	void menuButton(unsigned int _button);
+	void init(bool _reinit);
 
-	TitleMenu m_titleMenu = TitleMenu::Play;
+	void setTitleMenu(SubMenu _menu);
 
+	void update(float _dt, GameStateData & _data) override;
+	void draw(sf::RenderTexture & _dst) override;
+
+	void onMenuLeft(uint _player) override;
+	void onMenuRight(uint _player) override;
+	void onMenuUp(uint _player) override;
+	void onMenuDown(uint _player) override;
+	void onMenuAction(uint _player, unsigned int _button) override;
+
+private:
+	void drawTitleLogo(sf::RenderTexture & _dst);
+
+private:
+	SubMenu		m_titleMenu = SubMenu::Players;
 	sf::Texture	m_title;
+	Menu *		m_subMenu[(uint)SubMenu::Count];
+	Menu *		m_selected = nullptr;
 };
