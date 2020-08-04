@@ -164,9 +164,12 @@ bool Bonus::isChocolate() const
 //--------------------------------------------------------------------------
 bool Bonus::isRottenForPlayer(PlayerType _playerType) const
 {
-	if (isWine() && !(PlayerTypeInfo::get(_playerType).flags & PlayerTypeInfo::Flags::CanDrinkWine))
+	const bool canDrinkWine = PlayerTypeInfo::get(_playerType).flags & PlayerTypeInfo::Flags::CanDrinkWine;
+	const bool canEatChocolate = !(PlayerTypeInfo::get(_playerType).flags & PlayerTypeInfo::Flags::IsADog);
+
+	if (isWine() && !canDrinkWine)
 		return true;
-	else if (isChocolate() && !(PlayerTypeInfo::get(_playerType).flags & PlayerTypeInfo::Flags::IsADog))
+	else if (isChocolate() && !canEatChocolate)
 		return true;
 	return m_isRotten;
 }

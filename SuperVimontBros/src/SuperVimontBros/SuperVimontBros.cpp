@@ -537,6 +537,10 @@ void SuperVimontBros::populateCell(SpawnList & _spawns, const CellInfo & _cell, 
 	switch (levelObject)
 	{
 		// Ennemies
+		case LevelObject::ZombiePatrick:
+			_spawns.push_back({ new Enemy(EnemyType::ZombiePatrick), { -2,8 } });
+			break;
+
 		case LevelObject::Zombie:
 			_spawns.push_back({ new Enemy(EnemyType::Zombie), { -2,8 } });
 			break;

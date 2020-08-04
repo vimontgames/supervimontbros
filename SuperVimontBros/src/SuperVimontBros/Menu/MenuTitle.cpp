@@ -121,7 +121,7 @@ void MenuTitle::drawTitleLogo(RenderTexture & _dst)
 
 	// Version
 	{
-		const char * version = "1.0";
+		const char * version = "1.01";
 		const uint len = (uint)strlen(version);
 		const uint offset = (uint)((len & 1) ? title_fontSize * len * 0.5f : title_fontSize * (len - 0.5f) * 0.5f);
 

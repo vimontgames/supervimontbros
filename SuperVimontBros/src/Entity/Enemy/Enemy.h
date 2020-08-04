@@ -32,6 +32,7 @@ enum class EnemyType : u8
 	YellowVest,
 	ZombiePlaya,
 	ZombieCowboy,
+	ZombiePatrick,
 
 	Count
 };

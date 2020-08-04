@@ -46,6 +46,7 @@ Shit::Shit(ShitType _shitType) :
 			m_bounce = 0.6f;
 			break;
 
+		case ShitType::PatrickHead:
 		case ShitType::ZombieHeadSkeleton:
 		case ShitType::ZombieHead:
 			m_kickSpeed = 0.25f;
@@ -98,6 +99,10 @@ void Shit::init()
 		case ShitType::ZombieHeadSkeleton:
 			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::ZombieHeadSkeleton)));
 			break;
+
+		case ShitType::PatrickHead:
+			idle.addFrame(AnimFrame(m_tileSet->indexToCoords((uint)LevelObject::PatrickHead)));
+			break;			
 	}
 
 	addSoundFX(SoundFX::Hit, "SuperVimontBros/data/sound/Poc.wav");

@@ -46,6 +46,10 @@ void Splash::init()
 			{
 			default:
 				assert(false);
+				
+			case EnemyType::ZombiePatrick:
+				splashImg = m_tileSet->indexToCoords((uint)LevelObject::PatrickSplash);
+				break;
 
 				case EnemyType::Zombie:
 					splashImg = m_tileSet->indexToCoords((uint)LevelObject::ZombieSplash);

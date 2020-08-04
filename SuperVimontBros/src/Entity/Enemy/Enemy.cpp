@@ -29,7 +29,7 @@ const EnemyTypeInfo & EnemyTypeInfo::get(EnemyType _enemyType)
 		EnemyTypeInfo("YellowVest",	SPRITE_LINE(SpriteModel::YellowVest),	ChasePlayers,							    0.015f, 700, 192, 24),
 		EnemyTypeInfo("Plagiste",	SPRITE_LINE(SpriteModel::ZombiePlaya),  ChasePlayers,								0.025f, 256, 784, 20),
 		EnemyTypeInfo("Cowboy",		SPRITE_LINE(SpriteModel::ZombieCowboy), ChasePlayers,								0.029f, 300, 800, 22),
-
+		EnemyTypeInfo("Patrick",	SPRITE_LINE(SpriteModel::ZombiePatrick),ChasePlayers,								0.020f, 128, 512, 32),
 	};
 	static_assert(COUNT_OF(enemyTypeInfo) == (uint)EnemyType::Count);
 
@@ -95,7 +95,7 @@ void Enemy::init()
 		electricity.addFrame(AnimFrame({ 9,line }, 50));
 	}
 
-	AnimationSequence & punch = getAnimationSequence(Animation::Kick);
+	AnimationSequence & punch = getAnimationSequence(Animation::Punch);
 						punch.addFrame(AnimFrame({ 6,line }, 250));
 						punch.addFrame(AnimFrame({ 7,line }, 250));
 						punch.addFrame(AnimFrame({ 6,line }, 250));
@@ -153,7 +153,10 @@ bool Enemy::kill(Player * _byPlayer, KillCause _cause)
 		default:
 			score = 30;
 			splashType = SplashType::Enemy;
-			shitType = ShitType::ZombieHead;
+			if (m_enemyType == EnemyType::ZombiePatrick)
+				shitType = ShitType::PatrickHead;
+			else
+				shitType = ShitType::ZombieHead;
 			break;
 
 		case KillCause::Electricity:
@@ -654,7 +657,7 @@ void Enemy::update(const float _dt)
 		case EnemyState::Attack:
 		{
 			const uint time = m_animTimer.getElapsedTime().asMilliseconds();
-			const uint duration = getAnimationSequence(Animation::Kick).m_totalDuration;
+			const uint duration = getAnimationSequence(Animation::Punch).m_totalDuration;
 			if (time >= duration)
 			{
 				enterState(EnemyState::Wait);
@@ -704,7 +707,7 @@ void Enemy::update(const float _dt)
 					ball->m_velocity = ball->m_velocity * 0.5f + shootDir * shootPower * ball->m_kickSpeed;
 					ball->m_jump = clamp(shootPower - 0.25f, 0.0f, 0.65f) * shotHeight;
 					ball->setParent(this);
-					ball->playSound(SoundFX::Hit, 25 + shootPower * 75);
+					ball->playSound(SoundFX::Hit, (int)(25 + shootPower * 75));
 				}
 
 				enterState(EnemyState::Wait);
@@ -760,9 +763,7 @@ void Enemy::update(const float _dt)
 			if (chase)
 			{
 				if (closestEnemy.dist < info.m_distanceToOtherEnemies && !isCloserThan(this, closestPlayer.entity, game.m_enemies.get(), info.m_distanceToOtherEnemies))
-				{
 					chase = false;
-				}
 
 				if (info.flags & (EnemyTypeInfo::Flags::ChaseFootball | EnemyTypeInfo::Flags::ChaseRugbyBall))
 				{
@@ -790,7 +791,7 @@ void Enemy::update(const float _dt)
 				}
 
 				// If blocked then wait
-				if (!moving)
+				if (!moving && m_enemyState != EnemyState::Attack)
 				{
 					enterState(EnemyState::Wait);
 				}
@@ -846,7 +847,7 @@ void Enemy::update(const float _dt)
 			break;
 
 		case EnemyState::Attack:
-			playAnimation(Animation::Kick, m_faceLeft);
+			playAnimation(Animation::Punch, m_faceLeft);
 			break;
 
 		case EnemyState::PrepareShoot:

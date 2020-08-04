@@ -12,6 +12,7 @@ enum class ShitType
 	Electric,
 	ZombieHead,
 	ZombieHeadSkeleton,
+	PatrickHead,
 
 	Count
 };

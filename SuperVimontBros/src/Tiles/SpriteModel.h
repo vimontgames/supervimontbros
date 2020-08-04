@@ -31,4 +31,5 @@ enum class SpriteModel : spriteIndex
 	Goalkeeper		= SPRITE_INDEX(0,18),
 	Goalkeeper2		= SPRITE_INDEX(0,19),
 	ZombieCowboy	= SPRITE_INDEX(0, 22),
+	ZombiePatrick	= SPRITE_INDEX(0, 24),
 };

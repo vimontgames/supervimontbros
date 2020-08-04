@@ -74,7 +74,7 @@ void MenuCredits::draw(sf::RenderTexture & _dst)
 		"",
 		"",
 		"Special Thanks",
-		"PATRICK BALKANY",
+		"PATOCHE",
 		"",
 		""
 	};
