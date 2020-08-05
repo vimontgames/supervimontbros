@@ -35,9 +35,9 @@ void ElectricBox::init()
 	run.addFrame(AnimFrame({ coords.x + 1, coords.y }, 1000));
 
 	if (m_open)
-		open(nullptr);
+		playAnimation(Animation::Run);
 	else
-		close();
+		playAnimation(Animation::Idle);
 
 	addCustomSoundFX(SoundFX::Hit, "SuperVimontBros/data/sound", "Open.wav");
 	addCustomSoundFX(SoundFX::Damage, "SuperVimontBros/data/sound", "Bzzz.wav");

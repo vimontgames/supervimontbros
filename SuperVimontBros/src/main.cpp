@@ -44,7 +44,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdL
 		game.m_fullscreen = false;
 		game.m_debugDisplay = false;
 		#elif defined(_FINAL)
-		game.m_fullscreen = true;
+		game.m_fullscreen = false;
 		game.m_debugDisplay = false;
 		#else
 		#error Missing _DEBUG/_RELEASE/_FINAL target configuration
