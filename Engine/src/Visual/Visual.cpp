@@ -71,6 +71,12 @@ void Visual::setColor(const sf::Color & _color)
 }
 
 //--------------------------------------------------------------------------
+const sf::Color & Visual::getColor() const
+{
+	return m_sprite.getColor();
+}
+
+//--------------------------------------------------------------------------
 void Visual::setPosition(const Vector2f & _position)
 {
 	m_sprite.setPosition(_position);

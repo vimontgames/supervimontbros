@@ -140,6 +140,7 @@
     <ClCompile Include="src\Entity\Ball\Ball.cpp" />
     <ClCompile Include="src\Entity\Bonus\Bonus.cpp" />
     <ClCompile Include="src\Entity\Breakable\Breakable.cpp" />
+    <ClCompile Include="src\Entity\Bullet\Bullet.cpp" />
     <ClCompile Include="src\Entity\Dog\Dog.cpp" />
     <ClCompile Include="src\Entity\ElectricBox\ElectricBox.cpp" />
     <ClCompile Include="src\Entity\Enemy\Enemy.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="src\Entity\Ball\Ball.h" />
     <ClInclude Include="src\Entity\Bonus\Bonus.h" />
     <ClInclude Include="src\Entity\Breakable\Breakable.h" />
+    <ClInclude Include="src\Entity\Bullet\Bullet.h" />
     <ClInclude Include="src\Entity\Dog\Dog.h" />
     <ClInclude Include="src\Entity\ElectricBox\ElectricBox.h" />
     <ClInclude Include="src\Entity\Enemy\Enemy.h" />
@@ -197,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Entity\Ball\Ball.inl" />
+    <None Include="src\Entity\Bullet\Bullet.inl" />
     <None Include="src\Entity\Entity.inl" />
     <None Include="src\Entity\Player\Player.inl" />
     <None Include="src\Entity\Shit\Shit.inl" />

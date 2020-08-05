@@ -3,6 +3,8 @@
 #include "Entity/Entity.h"
 #include <functional>
 
+class Bullet;
+
 enum class GoalSide : u8;
 enum class GoalType : u8;
 
@@ -17,6 +19,7 @@ enum class EnemyState
 	PrepareShoot,
 	Kick,
 	Strafe,
+	Fire,
 
 	Count
 };
@@ -41,6 +44,7 @@ enum class KillCause : u8
 {
 	Default = 0,
 	Electricity,
+	Bullet,
 
 	Count
 };
@@ -66,8 +70,9 @@ struct EnemyTypeInfo
 		ChaseFootball	= 0x00000002,
 		ChaseRugbyBall	= 0x00000004,
 		GoalKeeper		= 0x00000008,
+		CanFire			= 0x00000010,
 
-		AnimLeft		= 0x00000010
+		AnimLeft		= 0x10000000
 	};
 
 	EnemyTypeInfo(const char * _name, u8 _spriteLine, Flags _flags = (Flags)0, float _speed = 0.02f, uint _waitBeforeWalk = 512, uint _walkMaxDist = 384, uint _distanceToOtherEnemies = 16) :
@@ -103,13 +108,16 @@ public:
 	Enemy(EnemyType _enemyType);
 	~Enemy();
 
+	bool testFlags(EnemyTypeInfo::Flags _flags) const;
+
 	void init() override;
 	void update(const float _dt) override;
 
 	void onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizontal, bool _vertical);
 
-	bool onHitShit(Shit * _shit);
+	bool onShitHit(Shit * _shit);
 	bool onHitBall(Ball * _ball);
+	bool onBulletHit(Bullet * _bullet);
 
 	bool kill(Player * _byPlayer, KillCause _cause = KillCause::Default);
 	bool setAttacking();

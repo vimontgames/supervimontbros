@@ -7,6 +7,7 @@
 class Enemy;
 class Ball;
 class Shit;
+class Bullet;
 class Vehicle;
 class Goal;
 class MenuTitle;
@@ -90,6 +91,7 @@ class SuperVimontBros : public Game
 		ObjectList<Vehicle*>	m_vehicles;
 		ObjectList<Ball*>		m_balls;
 		ObjectList<Shit*>		m_shits;
+		ObjectList<Bullet*>		m_bullets;
 		ObjectList<Bonus*>		m_bonuses;
 		ObjectList<Goal*>		m_goals;
 

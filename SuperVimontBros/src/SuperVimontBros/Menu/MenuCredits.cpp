@@ -18,7 +18,7 @@ void MenuCredits::update(float _dt, GameStateData & _data)
 
 	m_timeStart += _dt;
 
-	if (m_timeStart >= 25000)
+	if (m_timeStart >= 50000)
 		game.m_menuTitle->setTitleMenu(MenuTitle::SubMenu::Main);
 }
 
@@ -29,7 +29,7 @@ void MenuCredits::draw(sf::RenderTexture & _dst)
 
 	auto & game = SuperVimontBros::get();
 
-	float offset = -m_timeStart * 0.005f;
+	float offset = -m_timeStart * 0.0025f;
 	int Y = (int)((offset+22) * title_fontSize);
 
 	Text text;
@@ -74,6 +74,9 @@ void MenuCredits::draw(sf::RenderTexture & _dst)
 		"",
 		"",
 		"Special Thanks",
+		"NINI",
+		"YVAN",
+		"",
 		"PATOCHE",
 		"",
 		""

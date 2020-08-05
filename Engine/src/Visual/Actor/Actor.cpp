@@ -556,13 +556,9 @@ void Actor::drawShadow(sf::RenderTexture & _surface)
 	//shadow.setColor({ 0,0,0, (u8)(m_sprite.getColor().a / 4) });
 
 	if (m_animLeft && !m_hasAnimLeft)
-	{
 		shadow.setScale({ -1.0f,-0.5f });
-	}
 	else
-	{
 		shadow.setScale({ 1.0f,-0.5f });
-	}
 
 	shadow.move(0.0f, info.m_shadowOffset + m_tileSet->m_size.y / 2);
 

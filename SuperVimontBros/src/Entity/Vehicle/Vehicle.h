@@ -27,7 +27,7 @@ public:
 	void onObjectCollision(objectIndex _objectIndex, sf::Vector2f & _move, bool _horizontal, bool _vertical) override;
 	void onTileCollision(tileIndex _tileIndex, sf::Vector2f & _move, bool _horizontal, bool _vertical) override;
 
-	void onVehicleCollision(Visual * _other, bool _fromOtherVehicle = false);
+	bool onVehicleCollision(Visual * _other, bool _fromOtherVehicle = false);
 
 	Entity * getDriver() const;
 

@@ -23,8 +23,8 @@
 using namespace sf;
 
 static const int timeBeforeDamage = 0;
-static const int damageDuration = 1000;
-static const int timeBeforeNewDamage = 1000;
+static const int damageDuration = 500;
+static const int timeBeforeNewDamage = 500;
 
 //--------------------------------------------------------------------------
 const PlayerTypeInfo & PlayerTypeInfo::get(PlayerType _playerType)
@@ -333,7 +333,7 @@ void Player::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizo
 	Shit * shit = dynamic_cast<Shit*>(_other);
 	if (shit)
 	{
-		onHitShit(shit);
+		onShitHit(shit);
 		return;
 	}
 
@@ -349,7 +349,7 @@ void Player::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizo
 //--------------------------------------------------------------------------
 void Player::onEnemyHit(Enemy * _enemy)
 {
-	if (!isInVehicle() && m_timeSinceLastHit.getElapsedTime().asMilliseconds() > damageDuration + timeBeforeNewDamage /*timeBeforeDamage * 2*/)
+	if (!isInVehicle() && canTakeDamage())
 	{
 		if (_enemy->setAttacking())
 		{
@@ -366,7 +366,7 @@ void Player::onEnemyHit(Enemy * _enemy)
 //--------------------------------------------------------------------------
 bool Player::onElectricityHit(Entity * _byEntity)
 {
-	if (!isInVehicle() && m_timeSinceLastHit.getElapsedTime().asMilliseconds() > damageDuration + timeBeforeNewDamage)
+	if (!isInVehicle() && canTakeDamage())
 	{
 		//debugPrint("Player %s is attacked by %s\n", name().toAnsiString().c_str(), _enemy->name().toAnsiString().c_str());
 		m_timeSinceLastHit.restart();
@@ -505,13 +505,36 @@ void Player::onEnterVehicle(Vehicle * _vehicle)
 }
 
 //--------------------------------------------------------------------------
-void Player::onHitShit(Shit * _shit)
+void Player::onShitHit(Shit * _shit)
 {
 	if (_shit->getShitType() == ShitType::Electric && _shit->getParent() != this)
 	{
 		onElectricityHit(_shit);
 		_shit->playSound(SoundFX::Damage, 50);
 	}
+}
+
+//--------------------------------------------------------------------------
+bool Player::canTakeDamage() const
+{
+	return m_timeSinceLastHit.getElapsedTime().asMilliseconds() > damageDuration + timeBeforeNewDamage;
+}
+
+//--------------------------------------------------------------------------
+bool Player::onBulletHit(Bullet * _bullet)
+{
+	if (!isInVehicle() && canTakeDamage())
+	{
+		m_timeSinceLastHit.restart();
+		m_isAttacked = true;
+		m_damageTaken = false;
+		m_damagePending = -1;
+		m_damageType = PlayerDamageType::Bullet;
+
+		return true;
+	}
+
+	return false;
 }
 
 //--------------------------------------------------------------------------
@@ -625,7 +648,7 @@ void Player::update(const float _dt)
 		m_isAttacked = false;
 	}
 
-	if (takeDamage && m_damageType == PlayerDamageType::Zombie)
+	if (takeDamage && (m_damageType == PlayerDamageType::Zombie || m_damageType == PlayerDamageType::Bullet))
 	{
 		float alpha = 127 + (uint)(16 * 128 * timeSinceLastHit / (float)(damageDuration - timeBeforeDamage)) % 128;
 		setColor({ 255, (u8)alpha, (u8)alpha, 255 });
@@ -639,6 +662,13 @@ void Player::update(const float _dt)
 	{
 		const auto & color = m_sprite.getColor();
 		setColor(getRottenColor(color));
+	}
+
+	if (!canTakeDamage() && m_hasEverTakenDamage)
+	{
+		float alpha = 127 + (uint)(16 * 128 * timeSinceLastHit / (float)(damageDuration - timeBeforeDamage)) % 128;
+		const auto color = getColor();
+		setColor({ color.r, color.g, color.b, (u8)alpha });
 	}
 
 	float horizontalSpeed = 0.06f * _dt;
@@ -1055,7 +1085,7 @@ void Player::update(const float _dt)
 				break;
 		}
 		
-
+		m_hasEverTakenDamage = true;
 		drop = true;
 	}
 	else if (kicking)

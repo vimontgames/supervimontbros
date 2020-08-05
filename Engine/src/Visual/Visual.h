@@ -27,6 +27,7 @@ public:
 	void setImage(uint _row, uint _column, bool _flipX = false, bool _flipY = false);
 
 	void setColor(const sf::Color & _color);
+	const sf::Color & getColor() const;
 
 	void setOrigin(const sf::Vector2f & _origin);
 	const sf::Vector2f & getOrigin() const;

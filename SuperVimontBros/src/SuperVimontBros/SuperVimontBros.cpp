@@ -8,6 +8,7 @@
 #include "Entity/Player/Player.h"
 #include "Entity/Ball/Ball.h"
 #include "Entity/Shit/Shit.h"
+#include "Entity/Bullet/Bullet.h"
 #include "Entity/Goal/Football/FootballGoal.h"
 #include "Entity/Goal/Rugby/RugbyGoal.h"
 #include "Entity/Bonus/Bonus.h"
@@ -501,9 +502,12 @@ void SuperVimontBros::reset()
 
 	m_enemies.clear();
 	m_balls.clear();
+	m_footballs.clear();
+	m_rugbyBalls.clear();
 	m_goals.clear();
 	m_vehicles.clear();
 	m_shits.clear();
+	m_bullets.clear();
 	m_bonuses.clear();
 	m_radZones.clear();
 

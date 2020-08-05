@@ -4,6 +4,7 @@
 #include "Entity/Ball/Ball.h"
 #include "Entity/Shit/Shit.h"
 #include "Entity/Goal/Goal.h"
+#include "Entity/Bullet/Bullet.h"
 #include "Entity/Player/Player.h"
 #include "Entity/Splash/Splash.h"
 #include "SuperVimontBros/SuperVimontBros.h"
@@ -14,6 +15,12 @@
 using namespace sf;
 
 sf::Sound * Enemy::s_lastGrrSound = nullptr;
+
+static const float start_fire_dist = 256;
+static const float start_fire_angle = 0.10f;
+static const float stop_fire_dist = 320;
+static const float stop_fire_angle = 0.15f;
+static const float prepare_fire_delay = 700;
 
 //--------------------------------------------------------------------------
 const EnemyTypeInfo & EnemyTypeInfo::get(EnemyType _enemyType)
@@ -29,7 +36,7 @@ const EnemyTypeInfo & EnemyTypeInfo::get(EnemyType _enemyType)
 		EnemyTypeInfo("YellowVest",	SPRITE_LINE(SpriteModel::YellowVest),	ChasePlayers,							    0.015f, 700, 192, 24),
 		EnemyTypeInfo("Plagiste",	SPRITE_LINE(SpriteModel::ZombiePlaya),  ChasePlayers,								0.025f, 256, 784, 20),
 		EnemyTypeInfo("Cowboy",		SPRITE_LINE(SpriteModel::ZombieCowboy), ChasePlayers,								0.029f, 300, 800, 22),
-		EnemyTypeInfo("Patrick",	SPRITE_LINE(SpriteModel::ZombiePatrick),ChasePlayers,								0.020f, 128, 512, 32),
+		EnemyTypeInfo("Patrick",	SPRITE_LINE(SpriteModel::ZombiePatrick),ChasePlayers | CanFire,						0.020f, 200, 512, 32),
 	};
 	static_assert(COUNT_OF(enemyTypeInfo) == (uint)EnemyType::Count);
 
@@ -42,12 +49,9 @@ Enemy::Enemy(EnemyType _enemyType) :
 	Entity(EnemyTypeInfo::get(_enemyType).name, Game::get().m_spritesTile),
 	m_enemyType(_enemyType)
 {
-	
 	m_isColliderForOtherActors = true;
 
-	const auto & info = getInfo();
-
-	m_hasAnimLeft = info.flags & EnemyTypeInfo::Flags::AnimLeft;
+	m_hasAnimLeft = testFlags(EnemyTypeInfo::Flags::AnimLeft);
 
 	SuperVimontBros::get().m_enemies.add(this);
 }
@@ -56,6 +60,13 @@ Enemy::Enemy(EnemyType _enemyType) :
 Enemy::~Enemy()
 {
 	SuperVimontBros::get().m_enemies.remove(this);
+}
+
+//--------------------------------------------------------------------------
+bool Enemy::testFlags(EnemyTypeInfo::Flags _flags) const
+{
+	const auto & info = getInfo();
+	return info.flags & _flags;
 }
 
 //--------------------------------------------------------------------------
@@ -87,6 +98,10 @@ void Enemy::init()
 	AnimationSequence & die = getAnimationSequence(Animation::Die);
 						die.addFrame(AnimFrame({ 9,line }, 250));
 						die.addFrame(AnimFrame({10,line }, 250));
+
+	AnimationSequence & fire = getAnimationSequence(Animation::Fire);
+						fire.addFrame(AnimFrame({ 22,line }, prepare_fire_delay));
+						fire.addFrame(AnimFrame({ 23,line }, 100));
 
 	AnimationSequence & electricity = getAnimationSequence(Animation::Electricity);
 	for (uint i = 0; i < 5; ++i)
@@ -130,6 +145,9 @@ void Enemy::init()
 	addCustomSoundFX(SoundFX::GrrrA, "SuperVimontBros/data/sound", "Grrr.wav");
 	addCustomSoundFX(SoundFX::GrrrB, "SuperVimontBros/data/sound", "Grrr2.wav");
 	addCustomSoundFX(SoundFX::Damage, "SuperVimontBros/data/sound", "aie.wav");
+	
+	if (testFlags(EnemyTypeInfo::Flags::CanFire))
+		addCustomSoundFX(SoundFX::Fire, "SuperVimontBros/data/sound", "Fire.wav");
 }
 
 //--------------------------------------------------------------------------
@@ -151,16 +169,24 @@ bool Enemy::kill(Player * _byPlayer, KillCause _cause)
 		switch (_cause)
 		{
 		default:
-			score = 30;
 			splashType = SplashType::Enemy;
 			if (m_enemyType == EnemyType::ZombiePatrick)
+			{
 				shitType = ShitType::PatrickHead;
+				score = 500;
+			}
 			else
+			{
 				shitType = ShitType::ZombieHead;
+				score = 50;
+			}
 			break;
 
 		case KillCause::Electricity:
-			score = 90;
+			if (m_enemyType == EnemyType::ZombiePatrick)
+				score = 1000;
+			else
+				score = 250;
 			splashType = SplashType::Cinder;
 			shitType = ShitType::ZombieHeadSkeleton;
 			break;
@@ -215,7 +241,7 @@ void Enemy::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizon
 	Shit * shit = dynamic_cast<Shit*>(_other);
 	if (shit)
 	{
-		onHitShit(shit);
+		onShitHit(shit);
 		return;
 	}
 
@@ -223,7 +249,7 @@ void Enemy::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizon
 }
 
 //--------------------------------------------------------------------------
-bool Enemy::onHitShit(Shit * _shit)
+bool Enemy::onShitHit(Shit * _shit)
 {
 	KillCause cause = KillCause::Default;
 
@@ -231,6 +257,13 @@ bool Enemy::onHitShit(Shit * _shit)
 		cause = KillCause::Electricity;
 
 	kill(dynamic_cast<Player*>(_shit->getParent()), cause);
+	return true;
+}
+
+//--------------------------------------------------------------------------
+bool Enemy::onBulletHit(Bullet * _bullet)
+{
+	kill(dynamic_cast<Player*>(_bullet->getParent()), KillCause::Bullet);
 	return true;
 }
 
@@ -260,7 +293,8 @@ const char * getEnemyStateName(EnemyState _enemyState)
 		"DIE",
 		"PREPARE",
 		"KICK",
-		"STRAFE"
+		"STRAFE",
+		"FIRE",
 	};
 	static_assert(COUNT_OF(enemyStateNames) == (uint)EnemyState::Count);
 	return enemyStateNames[(uint)_enemyState];
@@ -460,6 +494,10 @@ void Enemy::enterState(EnemyState _newState)
 				{
 					dropPickedEntity();
 				}
+				break;
+
+			case EnemyState::Fire:
+				m_waitTimer.restart();
 				break;
 		}
 	}
@@ -756,6 +794,42 @@ void Enemy::update(const float _dt)
 		case EnemyState::Die:
 			break;
 
+		case EnemyState::Fire:
+		{
+			if (m_waitTimer.getElapsedTime().asMilliseconds() > prepare_fire_delay)
+			{
+				playSound(SoundFX::Fire);
+
+				Bullet * bullet = new Bullet(BulletType::Default);
+				bullet->init();
+				bullet->setParent(this);
+				bullet->m_isColliderForOtherActors = true;
+				bullet->m_faceLeft = m_faceLeft;
+				bullet->m_animLeft = m_animLeft;
+				bullet->m_lutIndex = m_lutIndex;
+				bullet->m_shaderID = m_shaderID;
+				bullet->setPosition(getPosition().x, getPosition().y, 0);
+
+				const float bullet_speed = 0.4f;
+
+				const float random = ((float(rand() & 255) / 255.0f) - 0.5f) * bullet_speed * 0.1f;
+				float y = random;
+				if (closestPlayer.found())
+					y = 0.5f * random + 0.5f * closestPlayer.dir.y;
+
+				bullet->m_velocity = { m_faceLeft ? -bullet_speed : bullet_speed, y };
+				Game::get().registerVisual(bullet);
+				bullet->release();
+
+				m_waitTimer.restart();
+			}
+			else if (closestPlayer.dist > stop_fire_dist || abs(closestPlayer.dir.y) > stop_fire_angle)
+			{
+				enterState(EnemyState::Wait);
+			}
+		}
+		break;
+
 		case EnemyState::Player:
 		{
 			bool chase = closestPlayer.found() && closestPlayer.dist < info.m_walkMaxDist;
@@ -774,6 +848,15 @@ void Enemy::update(const float _dt)
 
 					if (info.flags & EnemyTypeInfo::Flags::ChaseRugbyBall && !asBool(flags & TerrainTestFlags::IsInRugbyField))
 						chase = false;
+				}
+			}
+
+			if (testFlags(EnemyTypeInfo::Flags::CanFire))
+			{
+				if (closestPlayer.dist < start_fire_dist && abs(closestPlayer.dir.y) < start_fire_angle)
+				{
+					enterState(EnemyState::Fire);
+					break;
 				}
 			}
 
@@ -818,6 +901,10 @@ void Enemy::update(const float _dt)
 	{
 		case EnemyState::Strafe:
 			playAnimation(Animation::Run, m_faceLeft);
+			break;
+
+		case EnemyState::Fire:
+			playAnimation(Animation::Fire, m_faceLeft);
 			break;
 
 		case EnemyState::Wait:

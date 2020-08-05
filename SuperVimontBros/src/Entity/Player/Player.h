@@ -10,6 +10,7 @@ class Viewport;
 class Enemy;
 class Bonus;
 class Shit;
+class Bullet;
 
 enum class PlayerType : u8
 {
@@ -72,6 +73,7 @@ enum class PlayerDamageType : u8
 	Zombie,
 	Rotten,
 	Electricity,
+	Bullet,
 
 	Count
 };
@@ -106,9 +108,13 @@ public:
 	void					onEnemyHit(Enemy * _enemy);
 	bool					onBonusHit(Bonus * _bonus, bool _share = false);
 	bool					onElectricityHit(Entity * _byEntity);
+	void					onShitHit(Shit * _shit);
+	bool					onBulletHit(Bullet * _bullet);
+
 	void					onEnterVehicle(Vehicle * _vehicle);
 	void					onExitVehicle();
-	void					onHitShit(Shit * _shit);
+
+	bool					canTakeDamage() const;
 
 	bool					setRotten(bool _isRotten);
 
@@ -146,6 +152,7 @@ private:
 	Viewport *				m_viewport = nullptr;
 	bool					m_shitDone = false;
 	bool					m_kickDone = false;
+	bool					m_hasEverTakenDamage = false;
 	const Entity *			m_entityToDropKick = nullptr;
 	u16						m_score = 0;
 	u16						m_zombieKilled = 0;

@@ -69,6 +69,9 @@
     <ClCompile Include="src\SuperVimontBros\Menu\MenuCredits.cpp">
       <Filter>SuperVimontBros\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entity\Bullet\Bullet.cpp">
+      <Filter>Entity\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SuperVimontBros">
@@ -130,6 +133,9 @@
     </Filter>
     <Filter Include="SuperVimontBros\Menu">
       <UniqueIdentifier>{67f58159-afcf-4f9d-abcf-466af9442ce1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entity\Bullet">
+      <UniqueIdentifier>{83ec1813-4490-489b-a136-e62a7ea340ad}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +218,9 @@
     <ClInclude Include="src\SuperVimontBros\Menu\MenuCredits.h">
       <Filter>SuperVimontBros\Menu</Filter>
     </ClInclude>
+    <ClInclude Include="src\Entity\Bullet\Bullet.h">
+      <Filter>Entity\Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Entity\Player\Player.inl">
@@ -225,6 +234,9 @@
     </None>
     <None Include="src\Entity\Ball\Ball.inl">
       <Filter>Entity\Ball</Filter>
+    </None>
+    <None Include="src\Entity\Bullet\Bullet.inl">
+      <Filter>Entity\Bullet</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -5,11 +5,10 @@
 #include "Entity/Enemy/Enemy.h"
 #include "Entity/Ball/Ball.h"
 #include "Entity/Shit/Shit.h"
+#include "Entity/Bullet/Bullet.h"
 #include "Controller/Controller.h"
 
 using namespace sf;
-
-#pragma optimize("", off)
 
 //--------------------------------------------------------------------------
 Vehicle::Vehicle(const sf::String & _name) :
@@ -76,6 +75,9 @@ void Vehicle::addWheel(const sf::Vector2u _image, sf::Vector2f _position)
 //--------------------------------------------------------------------------
 void Vehicle::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizontal, bool _vertical)
 {
+	if (Bullet * buller = dynamic_cast<Bullet*>(_other))
+		return;
+
 	if (Enemy * enemy = dynamic_cast<Enemy*>(_other))
 	{
 		if (m_velocity.x != 0 && !(enemy->getInfo().flags & EnemyTypeInfo::Flags::GoalKeeper))
@@ -126,7 +128,7 @@ void Vehicle::onTileCollision(tileIndex _tileIndex, sf::Vector2f & _move, bool _
 }
 
 //--------------------------------------------------------------------------
-void Vehicle::onVehicleCollision(Visual * _other, bool _fromOtherVehicle)
+bool Vehicle::onVehicleCollision(Visual * _other, bool _fromOtherVehicle)
 {
 	SuperVimontBros & game = SuperVimontBros::get();
 
@@ -221,7 +223,11 @@ void Vehicle::onVehicleCollision(Visual * _other, bool _fromOtherVehicle)
 				vehicle->onVehicleCollision(this, true);
 			}
 		}
+
+		return true;
 	}
+
+	return false;
 }
 
 //--------------------------------------------------------------------------

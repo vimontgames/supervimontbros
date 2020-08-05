@@ -121,14 +121,14 @@ void Shit::onActorCollision(Actor * _other, sf::Vector2f & _move, bool _horizont
 	Enemy * enemy = dynamic_cast<Enemy*>(_other);
 	if (enemy)
 	{
-		if (enemy->onHitShit(this))
+		if (enemy->onShitHit(this))
 			return;
 	}
 
 	Player * player = dynamic_cast<Player*>(_other);
 	if (player)
 	{
-		player->onHitShit(this);
+		player->onShitHit(this);
 		return;
 	}
 

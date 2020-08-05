@@ -100,9 +100,7 @@ bool Game::init(bool _reinit)
 
 	// Reset game camera
 	for (Viewport * vp : m_viewports)
-	{
 		vp->reset();
-	}
 
 	// Reset mode
 	m_editorMode = EditorMode::None;

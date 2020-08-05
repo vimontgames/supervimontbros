@@ -24,6 +24,7 @@ enum class Animation : AnimIndex
 	Carry,
 	Electricity,
 	ThrowUp,
+	Fire,
 
 	Count
 };
@@ -43,6 +44,7 @@ enum class SoundFX : SoundIndex
 	MiamPizza,
 	MiamPuree,
 	Beurk, 
+	Fire,
 
 	// Vehicle
 	Open = 0,
