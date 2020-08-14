@@ -10,7 +10,7 @@ Following their game design, the game takes place in our actual neighborhood (ex
 ![House](img/house.png?raw=true "House")
 
 
-Up to 4 players can play at once using pads or even sharing keyboard. Please not that multiplayer and split-screen were implemented very early in the development in order as to avoid them fighting IRL when they want to go into different locations.
+Up to 4 players can play at once using pads or even sharing keyboard. Multiplayer and split-screen had to be implemented very early in the development in order as to avoid them fighting IRL just because they wanted to go into different locations ^^
 
 ![3Players](img/3players.png?raw=true "3 Players")
 
