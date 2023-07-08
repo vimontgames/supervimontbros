@@ -19,7 +19,8 @@ float4 texture_blur(sampler2D _texture, float2 _uv, float2 _size, int _samples, 
 			pixel += texture2D(_texture, _uv + float2(i - _samples / 2, j - _samples / 2) * _scale * invSize);
 		}
 	}
-	return pixel / (_samples*_samples);
+	float s = _samples * _samples;
+	return pixel / float4(s,s,s,s);
 }
 
 float4 sampleAs3DTexture(sampler2D _texture, float3 _uv, float _width, int _lut, int _count) 
@@ -38,8 +39,8 @@ float4 sampleAs3DTexture(sampler2D _texture, float3 _uv, float _width, int _lut,
 		  yOffset /= _count;
 		  yOffset += float(_lut) / float(_count);
 
-	float4 slice0Color = texture2D(_texture, float2(s0, yOffset), 0.0);
-	float4 slice1Color = texture2D(_texture, float2(s1, yOffset), 0.0);
+	float4 slice0Color = texture2D(_texture, float2(s0, yOffset));
+	float4 slice1Color = texture2D(_texture, float2(s1, yOffset));
 	float zOffset = mod(_uv.z * innerWidth, 1.0);
 	float4 result = lerp(slice0Color, slice1Color, zOffset);
 	return result;
