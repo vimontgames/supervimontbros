@@ -303,7 +303,7 @@ void Actor::update(const float _dt)
 //--------------------------------------------------------------------------
 void Actor::clearDebugText()
 {
-	m_debugBuffer = '\0';
+	m_debugBuffer = nullptr;
 }
 
 #define DEBUGBUFFER_SIZE 1024
