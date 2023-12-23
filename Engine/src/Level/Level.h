@@ -130,9 +130,9 @@ public:
 	const Tiles *					m_decalTiles = nullptr;
 	const Tiles *					m_objectTiles = nullptr;
 
-	sf::Vector2u					m_mouseOverTile = { -1, -1 };
-	sf::Vector2u					m_selectedTile = { 0, 0 };
-	sf::Vector2f					m_paintCamera = { 0, 0 };
+	sf::Vector2u					m_mouseOverTile = sf::Vector2u(-1, -1);
+	sf::Vector2u					m_selectedTile = sf::Vector2u(0, 0);
+	sf::Vector2f					m_paintCamera = sf::Vector2f(0, 0);
 	bool							m_canPaint = false;
 	std::vector<Visual>				m_visuals;
 	Array2D<CellInfo>				m_selectedCopy;
